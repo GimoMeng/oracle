@@ -1,0 +1,29 @@
+cmd
+sqlplus/nolog
+conn sys/sys@orcl as sysdba
+set oracle sid = jxgl                  ---jxgl是数据库名
+edit d:\oracledb\sqlcd.txt
+select * from scott.emp;
+save d:\oracledb\sqlcd.txt append;
+select * from scott.dept;
+save d:\oracledb\sqlcd.txt append;    ---保存
+start d:\oracledb\sqlcd.txt;  /@ d:\oracledb\sqlcd.txt;         ---可以二选一
+ { 
+   set numformat 99999             ---数值显示
+   set linesize 80                 ---设置一行显示的字符
+   set pagesize 5                  ---设置一页显示的数据行数
+   set pause on                    ---暂停
+   set echo on                     ---打开显示命令
+   set feedback off                ---关闭表的输出信息     
+  }
+select * from v$loglife;           ---查询数据文件
+select * from tab;                 ---查询当前所有表
+append       在原本的文件内容后面添加要添加的文件内容
+select tablespace_name,max_extents from dba_tablespace;     ---查询表空间和最大扩展
+show user;                         ---显示当前用户
+show parameter processes           ---显示进程的最大数值
+show all                           ---显示定义的各种命令
+help desc;                         ---了解命令的格式
+shut down imediate                 ---立即终止数据库（只是关闭数据库，实例还在运行）
+startup open jxgl                  ---打开数据库
+startup force                      ---强制打开
